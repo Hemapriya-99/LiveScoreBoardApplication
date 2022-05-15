@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Live Tournament Score Board Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+ <link rel="stylesheet" href="/css/Style.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+ <a class="navbar-brand" href="/Home">Cricket Chronicle</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">   
+           <a class="nav-item nav-link"  href="/Home">Home</a> 
+           <a class="nav-item nav-link" href="/LiveMatchInfo">Current Matches</a> 
+           <a class="nav-item nav-link"  href="/Schedule">Schedule</a> 
+           <a class="nav-item nav-link active" href="/SportNews">NewsFeed</a> 
+          
+      </div>
+    </div>                      
+</nav>       
+<div class="container">
+
+<h1>NewsFeed</h1>
+<br>
+<div class="jumbotron text-white" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url(/image/ball.jpg)">
+<div class="row">
+     <div class="col-md-15">
+          <a th:each="article : ${articles}">
+             <img th:src="@{${article.urlToImage}}" alt="Loading..."  width="300" /><br>
+             <br>
+             <strong><span th:text="${article.title}" ></span></strong><br>
+             <span  th:text="${article.description}" ></span><br>
+             <b>More Info On: </b><a th:href="${article.url}" th:text="${article.url}"></a><br>
+             <hr class="style1">
+          </a>
+    </div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Live Tournament Score Board Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body  th:style="'background: url(/image/Player.png) no-repeat center right 70px fixed ;'">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+ <a class="navbar-brand" href="/Home">Cricket Chronicle</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">   
+           <a class="nav-item nav-link"  href="/Home">Home</a> 
+           <a class="nav-item nav-link"  href="/LiveMatchInfo">Current Matches</a> 
+           <a class="nav-item nav-link active" href="/Schedule">Schedule</a> 
+           <a class="nav-item nav-link" href="/SportNews">NewsFeed</a> 
+      </div>
+    </div>                      
+</nav>       
+<div class="container">
+<h1>Match Schedule</h1>
+    <table class="table table-bordered  table-striped">
+     <thead>
+        <tr>
+            <th scope="col">DATE</th>
+            <th scope="col">MATCH</th>
+        </tr>
+     </thead>
+        <tr th:each="datas : ${data}">
+            <td th:text="${datas.date}"></td>
+            <td th:text="${datas.name}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

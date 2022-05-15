@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Live Tournament Score Board Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/LiveMatchInfo.css"/>
+</head>
+<body style="background-color:white;">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="/Home">Cricket Chronicle</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">   
+           <a class="nav-item nav-link" href="/Home">Home</a> 
+           <a class="nav-item nav-link active"  href="/LiveMatchInfo">Current Matches</a> 
+           <a class="nav-item nav-link"  href="/Schedule">Schedule</a> 
+           <a class="nav-item nav-link" href="/SportNews">NewsFeed</a> 
+      </div>
+    </div>                      
+</nav>   
+<div class="container">
+<h1>Current Matches</h1>
+<br>
+<div class="jumbotron text-black border border-dark">
+<div class="row">
+<div class="col-md-15">
+  <a th:each="match : ${matches}">
+    <div class="grades_container"> 
+       <b><span class="grades" th:text="${match.series_name + ',' + match.header.type }"></span></b>
+    </div>
+    <br><br><br>
+    <b><span th:text="${match.team1.name + ' Vs ' + match.team2.name}"></span></b>
+    <span th:text="${',' + match.header.match_desc}"></span>
+    <span  th:text="${'  at ' + match.venue.name + ',' + match.venue.location}"></span><br>
+    <span th:text="${  'Toss Update : ' + match.header.toss}"></span><br>
+    <span th:each="b : ${match.bat_team}">
+      <span th:each="in:${b.innings}">
+         <span  th:text="${in.score + '-' + in.wkts + ' (' + in.overs + ' Overs)'}"></span><br>
+      </span>
+    </span> 
+    <span th:each="bowteam : ${match.bow_team}">
+      <span th:each="inn:${bowteam.innings}">
+        <span  th:text="${inn.score + '-' + inn.wkts + ' (' + inn.overs + ' Overs)' }"></span><br>
+      </span>  
+    </span>
+   <span th:text="${match.header.status}"></span><br>
+   <span th:text="${ 'Man Of The Match : ' + match.header.momNames}"></span><br>
+
+
+ <!--  <span class="rca-col rca-history-title">Data_Path   :</span><span class="rca-col" th:text="${match.data_path}"></span><br>-->
+ 
+   
+
+  
+<!-- <span>State_Title :</span><span class="rca-col" th:text="${match.header.state_title}"></span><br>
+
+ 
+
+  <span>Start Time  :</span><span class="rca-col" th:text="${match.header.start_time}"></span><br>
+  <span>End Time    :</span><span class="rca-col" th:text="${match.header.end_time}"></span><br>
+  <span>State       :</span><span class="rca-col" th:text="${match.header.state}"></span><br>
+ 
+ 
+  
+   -->
+
+   
+ 
+<!--    <span class="rca-col rca-history-title">Short Name  :</span><span class="rca-col" th:text="${match.team1.s_name}"></span><br>
+   
+ 
+  <span class="rca-col rca-history-title">Short Name  :</span><span class="rca-col" th:text="${match.team2.s_name}"></span><br>
+  
+     <span th:each="bats : ${match.batsman}">
+  <span class="rca-col rca-history-title">Batsman Name:</span><span class="rca-col" th:text="${bats.name}"></span><br>
+  <span class="rca-col rca-history-title">Strike      :</span><span class="rca-col" th:text="${bats.strike}"></span><br>
+  <span class="rca-col rca-history-title">Runs Taken  :</span><span  class="rca-col" th:text="${bats.r}"></span><br>
+  <span class="rca-col rca-history-title">Boundaries  :</span><span class="rca-col" th:text="${bats.b}"></span><br>
+    </span>
+    
+      <span th:each="bow : ${match.bowler}">
+   <span class="rca-col rca-history-title">Bowler Name :</span><span class="rca-col" th:text="${bow.name}"></span><br>
+   <span class="rca-col rca-history-title">Overs       :</span><span class="rca-col" th:text="${bow.o}"></span><br>
+   <span class="rca-col rca-history-title">Maiden      :</span><span class="rca-col" th:text="${bow.m}"></span><br>
+   <span class="rca-col rca-history-title">Runs Given  :</span><span class="rca-col" th:text="${bow.r}"></span><br>
+   <span class="rca-col rca-history-title">Wickets     :</span><span class="rca-col" th:text="${bow.w}"></span><br>
+    </span>
+   
+-->
+<br>
+<br>
+<br>
+</a>   
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
